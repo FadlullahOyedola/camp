@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,451 +10,184 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* General Body Styling */
         body {
             font-family: 'Open Sans', sans-serif;
-            margin: 0;
-            line-height: 1.6;
-            color: #333;
-            background-color: #F5F5F5;
-            scroll-behavior: smooth;
         }
-        
-        /* Reusable Containers and Headings */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 25px;
-        }
-
-        h1, h2, h3 {
+        h1, h2, h3, h4 {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
         }
-
-        h2 {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-            color: #002147;
-            text-align: center;
+        .header-bg {
+            background-image: linear-gradient(rgba(0, 33, 71, 0.8), rgba(0, 33, 71, 0.8)), url('https://images.unsplash.com/photo-1517596045431-7e8c3a9d9e4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcwMnwwfDF8c2VhcmNofDEzfHxpc2xhbWljJTIwY29udmVudGlvbiUyMGJhdmluZ3xlbnwwfHx8fDE3MjA0NDczNjJ8MA&ixlib=rb-4.0.3&q=80&w=1080');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
-
-        h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: #00A896;
-            margin: 10px auto 40px;
-            border-radius: 2px;
-        }
-
-        /* --- Header & Welcome Section --- */
-        header {
-            background: linear-gradient(rgba(0, 33, 71, 0.8), rgba(0, 33, 71, 0.8)), url('https://images.unsplash.com/photo-1517596045431-7e8c3a9d9e4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcwMnwwfDF8c2VhcmNofDEzfHxpc2xhbWljJTIwY29udmVudGlvbiUyMGJhdmluZ3xlbnwwfHx8fDE3MjA0NDczNjJ8MA&ixlib=rb-4.0.3&q=80&w=1080') center/cover no-repeat fixed;
-            color: #fff;
-            padding: 120px 0 80px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .camp-name {
-            font-size: 2.5em;
-            font-weight: 700;
-            color: #FFD700;
-            margin-bottom: 20px;
-        }
-
-        .hero-tagline {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            color: #fff;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-        }
-
-        .hero-description {
-            font-size: 1.1em;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            color: #eee;
-        }
-
-        .button {
-            cursor: pointer;
-            color: #002147;
-            background-color: #00A896;
-            border: none;
-            border-radius: 50px;
-            text-decoration: none;
-            padding: 15px 40px;
-            display: inline-block;
-            font-weight: 600;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            text-transform: uppercase;
-        }
-
-        .button:hover {
-            background-color: #008779;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* --- Payment Section --- */
-        .payment-section {
-            padding: 80px 0;
-            background-color: #fff;
-            text-align: center;
-        }
-
-        .payment-form {
-            max-width: 700px;
-            margin: 50px auto 0;
-            background: #fdfdfd;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            border-top: 5px solid #002147;
-        }
-        
-        .form-message {
-            margin-top: 20px;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 1.1em;
-        }
-
-        .success-message {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .error-message {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .payment-form .form-group {
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .payment-form .form-group select {
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
-        }
-
-        .payment-form label {
-            font-weight: 600;
-            color: #002147;
-            margin-bottom: 8px;
-        }
-
-        .payment-form input[type="number"],
-        .payment-form input[type="text"],
-        .payment-form input[type="email"] {
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
-            transition: border-color 0.3s ease;
-        }
-
-        .payment-form input[type="number"]:focus,
-        .payment-form input[type="text"]:focus,
-        .payment-form input[type="email"]:focus {
-            border-color: #00A896;
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(0, 168, 150, 0.2);
-        }
-
-        .category-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #E6EBF0;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-
-        .category-item span {
-            font-weight: 600;
-            color: #002147;
-        }
-
-        .category-item input[type="number"] {
-            width: 80px;
-            text-align: center;
-            padding: 8px;
-        }
-
-        .total-display {
-            font-size: 1.5em;
-            font-weight: 700;
-            color: #002147;
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #FFD700;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .payment-options {
-            text-align: left;
-            margin-top: 20px;
-        }
-
-        .payment-options h4 {
-            color: #002147;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-        }
-
-        .payment-options label {
-            display: block;
-            margin-bottom: 10px;
-            cursor: pointer;
-            font-weight: 400;
-        }
-
-        .payment-method-details {
-            border: 1px solid #eee;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #fcfcfc;
-            margin-top: 15px;
-        }
-
-        .bank-details-box {
-            background-color: #E6EBF0;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 10px;
-            border: 1px dashed #002147;
-        }
-        .bank-details-box p {
-            margin: 5px 0;
-            font-size: 0.95em;
-            color: #444;
-        }
-
-        .terms-conditions {
-            margin-top: 25px;
-            text-align: left;
-            font-size: 0.9em;
-        }
-
-        .terms-conditions a {
-            color: #00A896;
-            text-decoration: none;
-        }
-        .terms-conditions a:hover {
-            text-decoration: underline;
-        }
-
-        .submit-button {
-            padding: 15px 40px;
-            background-color: #002147;
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 30px;
-        }
-
-        .submit-button:hover {
-            background-color: #003366;
-            transform: translateY(-3px);
-        }
-        
-        .paystack-button {
-            background-color: #00A896;
-            color: #fff;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
-        }
-        .paystack-button:hover {
-            background-color: #008779;
-        }
-
-        /* --- Footer Styling --- */
-        footer {
-            background-color: #002147;
-            color: #fff;
-            text-align: center;
-            padding: 40px 0;
-        }
-
-        footer .social-icons a {
-            color: #fff;
-            font-size: 1.5em;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-
-        footer .social-icons a:hover {
-            color: #FFD700;
-        }
-
-        footer p {
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #bbb;
-        }
-
-        /* --- Back to Top Button Styling --- */
-        #back-to-top-btn {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 99;
-            border: none;
-            outline: none;
-            background-color: #00A896;
-            color: white;
-            cursor: pointer;
-            padding: 12px 15px;
-            border-radius: 50%;
-            font-size: 1.2em;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease;
-        }
-
-        #back-to-top-btn:hover {
-            background-color: #008779;
-        }
-
-        /* Attendee Names section */
-        #attendee-names {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-        }
+        .text-daura-primary { color: #002147; }
+        .bg-daura-primary { background-color: #002147; }
+        .text-daura-secondary { color: #00A896; }
+        .bg-daura-secondary { background-color: #00A896; }
+        .text-daura-accent { color: #FFD700; }
+        .bg-daura-accent { background-color: #FFD700; }
     </style>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800">
 
-    <header id="home">
-        <div class="container">
-            <div class="camp-name">Daura Camp</div>
-            <h1 class="hero-tagline">Ignite Your Faith. Empower Your Journey.</h1>
-            <p class="hero-description">Join the Dawah Front of Nigeria for our annual spiritual and educational camp. A transformative experience designed for growth, knowledge, and community building.</p>
-            <a href="#register" class="button">Register for Camp 2025</a>
+    <header class="header-bg text-white py-24 md:py-40 text-center shadow-lg" id="home">
+        <div class="container mx-auto px-6">
+            <h1 class="camp-name text-4xl md:text-6xl font-bold text-daura-accent mb-4">Daura Camp</h1>
+            <p class="hero-tagline text-2xl md:text-4xl font-semibold mb-3">Ignite Your Faith. Empower Your Journey.</p>
+            <p class="hero-description text-base md:text-lg max-w-2xl mx-auto mb-10 text-gray-200">Join the Dawah Front of Nigeria for our annual spiritual and educational camp. A transformative experience designed for growth, knowledge, and community building.</p>
+            <a href="#register" class="inline-block bg-daura-secondary hover:bg-teal-700 text-daura-primary font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">Register for Camp 2025</a>
         </div>
     </header>
 
     <main>
-        <section id="register" class="payment-section">
-            <div class="container">
-                <h2>Register & Pay for Daura Camp</h2>
-                <p style="text-align: center; max-width: 600px; margin: 0 auto 40px;">Please provide your details and choose your preferred payment method.</p>
+        <section id="camp-video" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-daura-primary">Experience the Daura Camp</h2>
+                    <div class="w-16 h-1 bg-daura-secondary mx-auto mt-4 rounded-full"></div>
+                </div>
+                <div class="relative w-full aspect-video shadow-xl rounded-xl overflow-hidden">
+                    <iframe 
+                        class="absolute top-0 left-0 w-full h-full" 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ?modestbranding=1&rel=0" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        loading="lazy"
+                        width="1280" 
+                        height="720">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="register" class="py-16 md:py-24">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-daura-primary">Register & Pay for Daura Camp</h2>
+                    <div class="w-16 h-1 bg-daura-secondary mx-auto mt-4 rounded-full"></div>
+                </div>
                 
-                <form action="#" method="post" class="payment-form" id="registration-form">
-                    <div class="form-group">
-                        <label>Select Attendees:</label>
-                        <div class="category-item">
-                            <span>Married</span>
-                            <input type="number" id="married" name="married" value="0" min="0" onchange="calculateTotal()" onkeyup="calculateTotal()">
-                            <span>₦25,000 each</span>
-                        </div>
-                        <div class="category-item">
-                            <span>Undergraduate</span>
-                            <input type="number" id="undergraduate" name="undergraduate" value="0" min="0" onchange="calculateTotal()" onkeyup="calculateTotal()">
-                            <span>₦15,000 each</span>
-                        </div>
-                        <div class="category-item">
-                            <span>Secondary School</span>
-                            <input type="number" id="secondary" name="secondary" value="0" min="0" onchange="calculateTotal()" onkeyup="calculateTotal()">
-                            <span>₦10,000 each</span>
-                        </div>
-                        <div class="category-item">
-                            <span>Children</span>
-                            <input type="number" id="children" name="children" value="0" min="0" onchange="calculateTotal()" onkeyup="calculateTotal()">
-                            <span>₦5,000 each</span>
+                <form action="#" method="post" class="bg-white p-6 md:p-10 rounded-xl shadow-xl border-t-4 border-daura-primary" id="registration-form">
+                    
+                    <div class="mb-8">
+                        <label class="block text-daura-primary text-lg font-bold mb-4">Select Attendees:</label>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-gray-100 p-4 rounded-lg flex justify-between items-center">
+                                <span>Married</span>
+                                <div class="flex items-center space-x-2">
+                                    <input type="number" id="married" name="married" value="0" min="0" onchange="calculateTotal()" onkeyup="calculateTotal()" class="w-16 text-center border rounded-lg p-2 focus:ring-2 focus:ring-daura-secondary outline-none">
+                                    <span class="text-daura-secondary font-semibold">₦25,000</span>
+                                </div>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg flex justify-between items-center">
+                                <span>Undergraduate</span>
+                                <div class="flex items-center space-x-2">
+                                    <input type="number" id="undergraduate" name="undergraduate" value="0" min="0" onchange="calculateTotal()" onkeyup="calculateTotal()" class="w-16 text-center border rounded-lg p-2 focus:ring-2 focus:ring-daura-secondary outline-none">
+                                    <span class="text-daura-secondary font-semibold">₦15,000</span>
+                                </div>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg flex justify-between items-center">
+                                <span>Secondary School</span>
+                                <div class="flex items-center space-x-2">
+                                    <input type="number" id="secondary" name="secondary" value="0" min="0" onchange="calculateTotal()" onkeyup="calculateTotal()" class="w-16 text-center border rounded-lg p-2 focus:ring-2 focus:ring-daura-secondary outline-none">
+                                    <span class="text-daura-secondary font-semibold">₦10,000</span>
+                                </div>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg flex justify-between items-center">
+                                <span>Children</span>
+                                <div class="flex items-center space-x-2">
+                                    <input type="number" id="children" name="children" value="0" min="0" onchange="calculateTotal()" onkeyup="calculateTotal()" class="w-16 text-center border rounded-lg p-2 focus:ring-2 focus:ring-daura-secondary outline-none">
+                                    <span class="text-daura-secondary font-semibold">₦5,000</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div id="attendee-names">
-                        </div>
+                    <div id="attendee-names" class="space-y-4 mb-6 hidden">
+                        <h4 class="text-daura-primary text-lg font-bold">Attendee Names</h4>
+                    </div>
 
-                    <div class="total-display">
+                    <div class="sticky bottom-0 bg-daura-accent text-daura-primary font-bold text-2xl p-4 md:p-6 rounded-lg shadow-md text-center transition-all duration-300 md:relative">
                         Total Amount: <span id="total_amount">₦0</span>
                     </div>
 
-                    <div class="form-group">
-                        <label for="email_address">Your Email Address:</label>
-                        <input type="email" id="email_address" name="email_address" placeholder="E.g., aisha.bello@example.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="gender">Select Gender:</label>
-                        <select id="gender" name="gender" required>
-                            <option value="">-- Please Select --</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
-                    </div>
-
-                    <div class="payment-options">
-                        <h4>Choose Payment Method:</h4>
-                        <label>
-                            <input type="radio" name="payment_method" value="bank_transfer" checked>
-                            Bank Transfer
-                        </label>
-                        <label>
-                            <input type="radio" name="payment_method" value="online_gateway">
-                            Online Payment (via Paystack/Flutterwave)
-                        </label>
-                    </div>
-
-                    <div id="payment-method-details">
+                    <div class="mt-8 space-y-6">
+                        <div>
+                            <label for="email_address" class="block text-daura-primary font-semibold mb-2">Your Email Address</label>
+                            <input type="email" id="email_address" name="email_address" placeholder="E.g., aisha.bello@example.com" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-daura-secondary outline-none" required>
                         </div>
+                        <div>
+                            <label for="gender" class="block text-daura-primary font-semibold mb-2">Select Gender</label>
+                            <select id="gender" name="gender" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-daura-secondary outline-none" required>
+                                <option value="">-- Please Select --</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 space-y-6">
+                        <div>
+                            <label for="phone_number" class="block text-daura-primary font-semibold mb-2">Your Phone Number</label>
+                            <input type="tel" id="phone_number" name="phone_number" placeholder="E.g., 08012345678" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-daura-secondary outline-none" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="text-daura-primary text-lg font-bold mb-4">Choose Payment Method:</h4>
+                        <div class="grid gap-4 md:grid-cols-2">
+                            <label class="bg-gray-100 p-4 rounded-lg cursor-pointer transition-all duration-200 border-2 border-transparent has-[:checked]:border-daura-secondary">
+                                <input type="radio" name="payment_method" value="bank_transfer" class="hidden peer" checked>
+                                <span class="font-semibold text-daura-primary">Bank Transfer</span>
+                                <p class="text-sm text-gray-600 mt-1">Make a direct transfer to our bank account.</p>
+                            </label>
+                            <label class="bg-gray-100 p-4 rounded-lg cursor-pointer transition-all duration-200 border-2 border-transparent has-[:checked]:border-daura-secondary">
+                                <input type="radio" name="payment_method" value="online_gateway" class="hidden peer">
+                                <span class="font-semibold text-daura-primary">Online Payment</span>
+                                <p class="text-sm text-gray-600 mt-1">Pay securely online with your card or bank account.</p>
+                            </label>
+                        </div>
+                    </div>
 
-                    <div class="terms-conditions">
-                        <label>
-                            <input type="checkbox" name="agree_terms" required>
-                            I agree to the <a href="#" target="_blank">terms and conditions</a> and <a href="#" target="_blank">privacy policy</a> of the Daura Camp.
+                    <div id="payment-method-details" class="mt-6 p-6 bg-gray-50 rounded-lg border border-gray-200"></div>
+
+                    <div class="mt-8 text-sm">
+                        <label class="flex items-center">
+                            <input type="checkbox" name="agree_terms" class="mr-2 accent-daura-secondary" required>
+                            I agree to the <a href="#" class="text-daura-secondary hover:underline ml-1 mr-1" target="_blank">terms and conditions</a> and <a href="#" class="text-daura-secondary hover:underline ml-1" target="_blank">privacy policy</a> of the Daura Camp.
                         </label>
                     </div>
 
-                    <button type="submit" class="submit-button" id="submit-button">Confirm Registration</button>
-                    <div id="form-messages"></div>
+                    <button type="submit" class="w-full bg-daura-primary hover:bg-daura-secondary text-white font-bold py-4 px-6 rounded-full mt-8 shadow-lg transition-all duration-300 transform hover:scale-105" id="submit-button">Confirm Registration</button>
+                    
+                    <div id="form-messages" class="mt-6 p-4 rounded-lg text-center font-semibold hidden"></div>
                 </form>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+    <footer class="bg-daura-primary text-gray-300 py-10 text-center">
+        <div class="container mx-auto px-6">
+            <div class="social-icons flex justify-center space-x-6 mb-4">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f text-xl hover:text-daura-accent transition-colors duration-300"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter text-xl hover:text-daura-accent transition-colors duration-300"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram text-xl hover:text-daura-accent transition-colors duration-300"></i></a>
             </div>
             <p>&copy; 2025 Dawah Front of Nigeria. All rights reserved.</p>
         </div>
     </footer>
     
-    <button onclick="topFunction()" id="back-to-top-btn" title="Go to top"><i class="fas fa-chevron-up"></i></button>
+    <button onclick="topFunction()" id="back-to-top-btn" title="Go to top" class="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-daura-secondary text-white shadow-lg opacity-0 transition-opacity duration-300 hover:bg-teal-700">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    
+    <script src="https://js.paystack.co/v1/inline.js"></script>
 
     <script>
         const prices = {
@@ -463,6 +196,10 @@
             secondary: 10000,
             children: 5000
         };
+
+        const registrationForm = document.getElementById('registration-form');
+        const formMessages = document.getElementById('form-messages');
+        const backToTopBtn = document.getElementById("back-to-top-btn");
 
         function calculateTotal() {
             const married = parseInt(document.getElementById('married').value) || 0;
@@ -478,47 +215,36 @@
         
         function generateNameFields(married, undergraduate, secondary, children) {
             const container = document.getElementById('attendee-names');
-            container.innerHTML = '';
+            container.innerHTML = '<h4 class="text-daura-primary text-lg font-bold">Attendee Names</h4>';
+            
             const totalAttendees = married + undergraduate + secondary + children;
 
             if (totalAttendees > 0) {
-                container.style.display = 'block';
-                const header = document.createElement('h4');
-                header.textContent = 'Attendee Names';
-                header.style.textAlign = 'left';
-                header.style.color = '#002147';
-                container.appendChild(header);
+                container.classList.remove('hidden');
+                
+                const attendeeTypes = {
+                    'Married': married,
+                    'Undergraduate': undergraduate,
+                    'Secondary School': secondary,
+                    'Children': children
+                };
 
-                for (let i = 1; i <= married; i++) {
-                    const div = document.createElement('div');
-                    div.className = 'form-group';
-                    div.innerHTML = `<label for="married_name_${i}">Married Attendee ${i}:</label><input type="text" id="married_name_${i}" name="married_name_${i}" placeholder="Full Name of Married Attendee ${i}" required>`;
-                    container.appendChild(div);
-                }
-                for (let i = 1; i <= undergraduate; i++) {
-                    const div = document.createElement('div');
-                    div.className = 'form-group';
-                    div.innerHTML = `<label for="undergraduate_name_${i}">Undergraduate Attendee ${i}:</label><input type="text" id="undergraduate_name_${i}" name="undergraduate_name_${i}" placeholder="Full Name of Undergraduate ${i}" required>`;
-                    container.appendChild(div);
-                }
-                for (let i = 1; i <= secondary; i++) {
-                    const div = document.createElement('div');
-                    div.className = 'form-group';
-                    div.innerHTML = `<label for="secondary_name_${i}">Secondary School Attendee ${i}:</label><input type="text" id="secondary_name_${i}" name="secondary_name_${i}" placeholder="Full Name of Secondary Attendee ${i}" required>`;
-                    container.appendChild(div);
-                }
-                for (let i = 1; i <= children; i++) {
-                    const div = document.createElement('div');
-                    div.className = 'form-group';
-                    div.innerHTML = `<label for="child_name_${i}">Child Attendee ${i}:</label><input type="text" id="child_name_${i}" name="child_name_${i}" placeholder="Full Name of Child ${i}" required>`;
-                    container.appendChild(div);
+                for (const type in attendeeTypes) {
+                    for (let i = 1; i <= attendeeTypes[type]; i++) {
+                        const div = document.createElement('div');
+                        div.className = 'form-group';
+                        div.innerHTML = `
+                            <label for="${type.toLowerCase().replace(' ', '_')}_name_${i}" class="block text-daura-primary font-semibold mb-2">${type} Attendee ${i}</label>
+                            <input type="text" id="${type.toLowerCase().replace(' ', '_')}_name_${i}" name="${type.toLowerCase().replace(' ', '_')}_name_${i}" placeholder="Full Name of ${type} Attendee ${i}" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-daura-secondary outline-none" required>
+                        `;
+                        container.appendChild(div);
+                    }
                 }
             } else {
-                container.style.display = 'none';
+                container.classList.add('hidden');
             }
         }
         
-        // This function will toggle the content based on the radio button
         function togglePaymentDetails() {
             const paymentDetailsContainer = document.getElementById('payment-method-details');
             const paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
@@ -526,24 +252,23 @@
 
             if (paymentMethod === 'bank_transfer') {
                 paymentDetailsContainer.innerHTML = `
-                    <h4>Bank Transfer Instructions</h4>
-                    <p>Please transfer the **Total Amount** to the account below. Use your **Full Name** as the payment reference.</p>
-                    <div class="bank-details-box">
+                    <h4 class="text-daura-primary font-bold mb-3">Bank Transfer Instructions</h4>
+                    <p class="mb-4 text-gray-700">Please transfer the <strong class="text-daura-primary">Total Amount</strong> to the account below. Use your <strong class="text-daura-primary">Full Name</strong> as the payment reference.</p>
+                    <div class="bg-gray-100 p-4 rounded-lg border-2 border-dashed border-daura-primary space-y-2">
                         <p><strong>Bank Name:</strong> Access Bank</p>
                         <p><strong>Account Name:</strong> Dawah Front of Nigeria</p>
                         <p><strong>Account Number:</strong> 0123456789</p>
                     </div>
-                    <div class="form-group" style="margin-top: 20px;">
-                        <label for="transfer_ref">Transaction Reference / Depositor's Name:</label>
-                        <input type="text" id="transfer_ref" name="transfer_ref" placeholder="Enter reference or name used for transfer">
+                    <div class="mt-4">
+                        <label for="transfer_ref" class="block text-daura-primary font-semibold mb-2">Transaction Reference / Depositor's Name:</label>
+                        <input type="text" id="transfer_ref" name="transfer_ref" placeholder="Enter reference or name used for transfer" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-daura-secondary outline-none">
                     </div>
                 `;
                 submitButton.textContent = "Confirm Registration & Payment Details";
             } else if (paymentMethod === 'online_gateway') {
                 paymentDetailsContainer.innerHTML = `
-                    <h4>Secure Online Payment</h4>
-                    <p>Click the button below to proceed to our secure online payment portal. You can pay using your card, bank account, or USSD.</p>
-                    <a href="#" class="paystack-button" id="paystack-link">Pay with Paystack</a>
+                    <h4 class="text-daura-primary font-bold mb-3">Secure Online Payment</h4>
+                    <p class="mb-4 text-gray-700">Click the button below to proceed to our secure online payment portal. You can pay using your card, bank account, or USSD.</p>
                 `;
                 submitButton.textContent = "Continue to Payment";
             }
@@ -560,46 +285,132 @@
             radio.addEventListener('change', togglePaymentDetails);
         });
 
+        // Paystack payment function
+        function payWithPaystack(data) {
+            const paystackPublicKey = 'pk_test_e3e9d8e5e6e3c0b11a91e5e01b3f7e6e5a6f2c3b'; // REPLACE with your LIVE public key
+            const paystackHandler = PaystackPop.setup({
+                key: paystackPublicKey,
+                email: data.email_address,
+                amount: data.total_amount * 100, // Paystack amount is in kobo
+                currency: 'NGN',
+                metadata: {
+                    custom_fields: [{
+                        display_name: "Registration Type",
+                        variable_name: "registration_type",
+                        value: "Daura Camp"
+                    }],
+                },
+                callback: function(response){
+                    // After successful payment, verify it on the backend
+                    data.payment_reference = response.reference;
+                    data.payment_method = 'online_gateway'; // Set payment method for backend
+                    submitRegistration(data);
+                },
+                onClose: function(){
+                    alert('Payment process was cancelled');
+                }
+            });
+            paystackHandler.openIframe();
+        }
+
+        async function submitRegistration(data) {
+            const submitButton = document.getElementById('submit-button');
+            const originalButtonText = submitButton.textContent;
+            
+            try {
+                const response = await fetch('http://localhost:3000/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+                const result = await response.json();
+
+                if (response.ok) {
+                    formMessages.classList.remove('hidden', 'bg-red-100', 'text-red-800');
+                    formMessages.classList.add('bg-green-100', 'text-green-800');
+                    formMessages.innerHTML = `
+                        <p class="text-xl font-bold">Registration Successful!</p>
+                        <p><strong>Registration ID:</strong> ${result.registrationId}</p>
+                        <p><strong>Assigned Room:</strong> ${result.room}</p>
+                        <p class="mt-2">Thank you for registering. You will receive an email shortly with more details.</p>
+                    `;
+                    submitButton.style.display = 'none';
+                    registrationForm.reset();
+                } else {
+                    throw new Error(result.error || 'Something went wrong on the server.');
+                }
+            } catch (error) {
+                formMessages.classList.remove('hidden', 'bg-green-100', 'text-green-800');
+                formMessages.classList.add('bg-red-100', 'text-red-800');
+                formMessages.textContent = `Error: ${error.message}`;
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
+        }
+        
         // Form submission handler
-        document.getElementById('registration-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
+        registrationForm.addEventListener('submit', async function(event) {
+            event.preventDefault(); 
             
             const total = parseInt(document.getElementById('total_amount').textContent.replace('₦', '').replace(/,/g, ''));
-            const formMessages = document.getElementById('form-messages');
-
+            formMessages.classList.add('hidden');
+            
             if (total === 0) {
-                formMessages.className = 'form-message error-message';
+                formMessages.classList.remove('hidden');
+                formMessages.classList.add('bg-red-100', 'text-red-800');
                 formMessages.textContent = 'Please select at least one attendee to register.';
                 return;
             }
-
+            
+            const submitButton = document.getElementById('submit-button');
             const paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
             
+            submitButton.disabled = true;
+            submitButton.textContent = 'Processing...';
+
+            const formData = new FormData(registrationForm);
+            const data = Object.fromEntries(formData.entries());
+
+            // Construct attendees array with names
+            const attendees = [];
+            const marriedCount = parseInt(document.getElementById('married').value) || 0;
+            const undergraduateCount = parseInt(document.getElementById('undergraduate').value) || 0;
+            const secondaryCount = parseInt(document.getElementById('secondary').value) || 0;
+            const childrenCount = parseInt(document.getElementById('children').value) || 0;
+
+            if (marriedCount > 0) { for(let i = 1; i <= marriedCount; i++) { attendees.push({ type: 'married', name: data[`married_name_${i}`] }); } }
+            if (undergraduateCount > 0) { for(let i = 1; i <= undergraduateCount; i++) { attendees.push({ type: 'undergraduate', name: data[`undergraduate_name_${i}`] }); } }
+            if (secondaryCount > 0) { for(let i = 1; i <= secondaryCount; i++) { attendees.push({ type: 'secondary', name: data[`secondary_school_name_${i}`] }); } }
+            if (childrenCount > 0) { for(let i = 1; i <= childrenCount; i++) { attendees.push({ type: 'children', name: data[`children_name_${i}`] }); } }
+            
+            data.attendees = attendees;
+            delete data.married;
+            delete data.undergraduate;
+            delete data.secondary;
+            delete data.children;
+            for (let key in data) {
+                if (key.includes('_name_')) {
+                    delete data[key];
+                }
+            }
+            data.total_amount = total;
+
             if (paymentMethod === 'online_gateway') {
-                // This is where you would integrate Paystack in a real site
-                formMessages.className = 'form-message success-message';
-                formMessages.textContent = 'Please click the "Pay with Paystack" button above to complete your payment. (This is a placeholder action)';
-                const paystackLink = document.getElementById('paystack-link');
-                paystackLink.onclick = (e) => {
-                    e.preventDefault();
-                    alert(`Redirecting to Paystack for payment of ₦${total.toLocaleString()}. (This is a placeholder action)`);
-                    // In a real application, you would initialize Paystack here
-                };
+                payWithPaystack(data);
             } else {
-                formMessages.className = 'form-message success-message';
-                formMessages.textContent = 'Thank you for your registration! Please complete your bank transfer to secure your spot.';
-                // In a real application, you would send this data to your backend
+                submitRegistration(data);
             }
         });
 
-
         // Back to Top button functionality
-        const backToTopBtn = document.getElementById("back-to-top-btn");
         window.onscroll = function() {
             if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                backToTopBtn.style.display = "block";
+                backToTopBtn.classList.remove('opacity-0');
             } else {
-                backToTopBtn.style.display = "none";
+                backToTopBtn.classList.add('opacity-0');
             }
         };
         function topFunction() {
